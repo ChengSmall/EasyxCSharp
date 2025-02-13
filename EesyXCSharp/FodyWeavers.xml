@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Weavers xmlns:xsi="http://www.w3.org/2001/XML/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FodyWeavers.xsd">
+	<Costura>
+		<Unmanaged32Assemblies>
+			EasyXcpp32
+		</Unmanaged32Assemblies>
+		<Unmanaged64Assemblies>
+			EasyXcpp64
+		</Unmanaged64Assemblies>
+	</Costura>
+</Weavers>
