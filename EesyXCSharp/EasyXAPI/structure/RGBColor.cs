@@ -18,6 +18,7 @@ namespace Cheng.EasyX.DataStructure
         //0xAABBGGRR结构
 
         #region 构造
+
         /// <summary>
         /// 使用4字节颜色值初始化rgb颜色结构
         /// </summary>
@@ -26,6 +27,7 @@ namespace Cheng.EasyX.DataStructure
         {
             colorValue = value;
         }
+
         /// <summary>
         /// 初始化rgb颜色结构
         /// </summary>
@@ -37,6 +39,7 @@ namespace Cheng.EasyX.DataStructure
         {
             colorValue = (0xFF000000) | ((uint)b << 16) | ((uint)g << 8) | r;
         }
+
         /// <summary>
         /// 初始化rgb颜色结构
         /// </summary>
@@ -48,9 +51,11 @@ namespace Cheng.EasyX.DataStructure
         {
             colorValue = ((uint)a << 24) | ((uint)b << 16) | ((uint)g << 8) | r;
         }
+
         #endregion
 
         #region 参数
+
         /// <summary>
         /// easyx颜色值
         /// </summary>
@@ -59,6 +64,7 @@ namespace Cheng.EasyX.DataStructure
         /// 此值的颜色分量在16进制数中表示为0xAABBGGRR
         /// </remarks>
         public readonly uint colorValue;
+
         #endregion
 
         #region 功能

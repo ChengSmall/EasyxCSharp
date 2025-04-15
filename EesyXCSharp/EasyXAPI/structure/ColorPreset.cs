@@ -10,18 +10,22 @@ namespace Cheng.EasyX
     {
 
         #region 常见颜色
+
         /// <summary>
         /// 黑
         /// </summary>
         public static RGBColor Black => new RGBColor(0xFF000000);
+
         /// <summary>
         /// 红
         /// </summary>
         public static RGBColor Red => new RGBColor(0xFF0000FF);
+
         /// <summary>
         /// 蓝
         /// </summary>
         public static RGBColor Blue => new RGBColor(0xFFFF0000);
+
         /// <summary>
         /// 绿
         /// </summary>
