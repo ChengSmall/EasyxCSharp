@@ -11,3 +11,7 @@ TestPrograms/
 
 #忽略本地配置文件
 .vs/
+
+#忽略无效文件
+.pdb
+packages/Fody.6.0.0/Fody.6.0.0.nupkg
