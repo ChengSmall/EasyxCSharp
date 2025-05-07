@@ -28,7 +28,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -82,9 +82,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if not "DEBUG" == "$(ConfigurationName)" (
-del /q "$(TargetDir)*.pdb"
-)
-del /q "$(TargetDir)*.config"</PostBuildEvent>
+    <PostBuildEvent>del /q "$(TargetDir)*.config"</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -1,5 +1,6 @@
 using Cheng.EasyX.DataStructure;
 using Cheng.LoopThreads;
+using Cheng.Memorys;
 
 namespace Cheng.EasyXEngine.Structures
 {
@@ -7,9 +8,9 @@ namespace Cheng.EasyXEngine.Structures
     /// <summary>
     /// 可自动注册游戏事件的类
     /// </summary>
-    public abstract class RegistrationGameEvent : SecureUnmanagedObjects
+    public abstract class RegistrationGameEvent : SafreleaseUnmanagedResources
     {
-        
+
         /// <summary>
         /// 注册游戏事件系统
         /// </summary>
@@ -28,6 +29,7 @@ namespace Cheng.EasyXEngine.Structures
         /// <param name="loop"></param>
         /// <param name="obj"></param>
         protected virtual void fe_GetMessageEventInvoke(LoopFunction loop, CsMessage obj) { }
+
         /// <summary>
         /// 帧循环事件回调函数
         /// </summary>
@@ -37,11 +39,11 @@ namespace Cheng.EasyXEngine.Structures
         /// <summary>
         /// 取消注册事件，在派生类重写需要调用基实现
         /// </summary>
-        /// <param name="disposing"></param>
+        /// <param name="disposeing"></param>
         /// <returns></returns>
-        protected override bool Disposing(bool disposing)
+        protected override bool Disposeing(bool disposeing)
         {
-            if (disposing)
+            if (disposeing)
             {
                 gameForm.GetMessageEvent -= fe_GetMessageEventInvoke;
                 gameForm.UpdateEvent -= fe_UpdateEventInvoke;
@@ -53,7 +55,7 @@ namespace Cheng.EasyXEngine.Structures
         /// <summary>
         /// 游戏实例
         /// </summary>
-        protected GameForm gameForm;
+        protected readonly GameForm gameForm;
 
         /// <summary>
         /// 注销游戏事件系统和释放资源
@@ -85,8 +87,9 @@ namespace Cheng.EasyXEngine.Structures
         /// 层级
         /// </summary>
         protected int p_lay;
+
         /// <summary>
-        /// 是否启用
+        /// 是否启用绘制
         /// </summary>
         protected bool p_active;
 

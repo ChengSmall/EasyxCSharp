@@ -252,7 +252,13 @@ namespace Cheng.EasyXEngine.Structures.Buttons
             set => p_active = value;
         }
 
-        public override bool CanButtonClick => true;
+        public override ButtonAvailablePermissions AvailablePermissions
+        {
+            get
+            {
+                return ButtonAvailablePermissions.CanButtonClick | base.AvailablePermissions;
+            }
+        }
 
         public int Lay
         {
@@ -266,9 +272,6 @@ namespace Cheng.EasyXEngine.Structures.Buttons
             }
         }
 
-        /// <summary>
-        /// 按钮被点击时引发的事件
-        /// </summary>
         public override event ButtonEvent<BaseButton> ButtonClickEvent;
 
         #endregion

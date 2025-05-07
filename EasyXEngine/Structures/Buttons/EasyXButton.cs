@@ -22,7 +22,15 @@ namespace Cheng.EasyXEngine.Structures.Buttons
 
         #region 功能
 
-        public override bool CanGetFrameValue => true;
+        //public override bool CanGetFrameValue => true;
+
+        public override ButtonAvailablePermissions AvailablePermissions
+        {
+            get
+            {
+                return ButtonAvailablePermissions.CanGetFrameValue;
+            }
+        }
 
         public override long NowFrame => (long)GameForm.Game.Frame;
 

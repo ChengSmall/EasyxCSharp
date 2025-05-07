@@ -53,13 +53,18 @@ namespace Cheng.EasyXEngine.Structures.Buttons
 
         #region 派生
 
-        public override bool CanGetState => true;
+        public override ButtonAvailablePermissions AvailablePermissions
+        {
+            get
+            {
+                const ButtonAvailablePermissions my =
+                 ButtonAvailablePermissions.CanGetAllStatePower |
+                 ButtonAvailablePermissions.CanGetFrameValue |
+                 ButtonAvailablePermissions.AllFrameGetPermissions;
 
-        public override bool CanGetPower => true;
-
-        public override bool CanGetChangeFrameButtonDown => true;
-
-        public override bool CanGetChangeFrameButtonUp => true;
+                return my;
+            }
+        }
 
         /// <summary>
         /// 当前帧按钮是否被按下
@@ -85,10 +90,6 @@ namespace Cheng.EasyXEngine.Structures.Buttons
             get => p_game.GetKey(p_keyCode) ? 1 : 0;
             set => ThrowSupportedException();
         }
-
-        public override bool CanGetMinPower => true;
-
-        public override bool CanGetMaxPower => true;
 
         public override float MaxPower => 1;
 
