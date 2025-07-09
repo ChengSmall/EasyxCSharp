@@ -93,7 +93,12 @@ namespace Cheng.EasyXEngine.Structures
         /// </summary>
         protected bool p_active;
 
-        public int Lay => p_lay;
+        public int Lay
+        {
+            get => p_lay;
+            set => p_lay = value;
+        }
+
         public virtual bool Active
         {
             get => p_active;

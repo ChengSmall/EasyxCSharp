@@ -52,12 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CSharpTemplates">
-      <HintPath>..\..\..\..\..\CSharp\CSharpTemplatesGit\order\CSharpTemplates\bin\Release\CSharpTemplates.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\CSharp\CSharpTemplatesGit\order\CSharpTemplates\bin\Release\netstandard2.0\CSharpTemplates.dll</HintPath>
     </Reference>
     <Reference Include="NetFrameworkTemplate">
       <HintPath>..\..\..\..\..\CSharp\CSharpTemplatesGit\order\NetFrameworkTemplate4.6.2\bin\Release\NetFrameworkTemplate.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />

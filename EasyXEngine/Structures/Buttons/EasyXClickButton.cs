@@ -17,6 +17,7 @@ namespace Cheng.EasyXEngine.Structures.Buttons
     {
 
         #region 结构
+
         /// <summary>
         /// 鼠标点击类型
         /// </summary>
@@ -165,7 +166,6 @@ namespace Cheng.EasyXEngine.Structures.Buttons
         ///// <param name="obj">获取的消息</param>
         //protected virtual void GetMessageEvent(CsMessage obj) { }
 
-
         /// <summary>
         /// 引发按钮点击事件的函数
         /// </summary>
@@ -212,14 +212,17 @@ namespace Cheng.EasyXEngine.Structures.Buttons
         #endregion
 
         #region 事件
+
         /// <summary>
         /// 当鼠标进入按钮范围内时引发的事件
         /// </summary>
         public event ButtonEvent<EasyXClickButton> MouseInEvent;
+
         /// <summary>
         /// 当鼠标从按钮范围内离开时引发的事件
         /// </summary>
         public event ButtonEvent<EasyXClickButton> MouseOutEvent;
+
         #endregion
 
         #region 功能

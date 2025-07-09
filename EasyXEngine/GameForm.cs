@@ -362,6 +362,7 @@ namespace Cheng.EasyXEngine
         /// 可绘制对象集合
         /// </summary>
         protected List<IDrawingObject> p_draws;
+
         /// <summary>
         /// 添加可绘制对象的缓冲区
         /// </summary>
@@ -388,6 +389,7 @@ namespace Cheng.EasyXEngine
         #endregion
 
         #region 消息捕获
+
         /// <summary>
         /// KeyCode按键状态捕获
         /// </summary>
@@ -452,6 +454,7 @@ namespace Cheng.EasyXEngine
         #endregion
 
         #region 封装
+
         /// <summary>
         /// 设置按钮状态
         /// </summary>
@@ -1080,6 +1083,7 @@ namespace Cheng.EasyXEngine
         #endregion
 
         #region 对象绘制功能
+
         /// <summary>
         /// 添加一个可绘制对象
         /// </summary>
@@ -1339,6 +1343,41 @@ namespace Cheng.EasyXEngine
 
         #region 循环
 
+        /// <summary>
+        /// 窗口退出前释放
+        /// </summary>
+        private void f_exitDispose()
+        {
+            lock (p_addrawBuffer)
+            {
+                while (p_addrawBuffer.Count != 0)
+                {
+                    var pop = p_addrawBuffer.Pop();
+                    if(pop is IDisposable disp)
+                    {
+                        disp.Dispose();
+                    }
+                }
+            }
+            lock (p_draws)
+            {
+                int length = p_draws.Count;
+                for (int i = 0; i < length; i++)
+                {
+                    if (p_draws[i] is IDisposable disp)
+                    {
+                        disp.Dispose();
+                    }
+                }
+            }
+
+            lock (p_gdiThreadSafeObj)
+            {
+                p_graphics.Dispose();
+            }
+
+        }
+
         private void f_toDrawingObj()
         {
 
@@ -1409,6 +1448,8 @@ namespace Cheng.EasyXEngine
 
         protected override void ExitLoop()
         {
+            f_exitDispose();
+
             p_addrawBuffer.Clear();
             p_draws.Clear();
             if (Device.IsOpenWindow)

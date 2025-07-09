@@ -39,6 +39,7 @@ namespace Cheng.EasyX.DataStructure
     {
 
         #region 参数
+
         /// <summary>
         /// 高度
         /// </summary>
@@ -74,7 +75,7 @@ namespace Cheng.EasyX.DataStructure
         /// <summary>
         /// 指定字符集
         /// </summary>
-        public LogFontCharSet lfCharSet;
+        public byte lfCharSet;
         /// <summary>
         /// 指定文字的输出精度
         /// </summary>
@@ -97,13 +98,26 @@ namespace Cheng.EasyX.DataStructure
         /// </summary>
         public byte lfPitchAndFamily;
         /// <summary>
-        /// 文字样式名称，此为非托管成员，第32位是'\0'，有效字符数是31位
+        /// 文字样式名称，此为字节数组成员，第32位是'\0'，有效字符数是31位
         /// </summary>
         public fixed char lfFaceName[32];
 
         #endregion
 
         #region 访问
+
+        /// <summary>
+        /// 访问或设置GDI字符集
+        /// </summary>
+        public LogFontCharSet GdiCharSet
+        {
+            get => (LogFontCharSet)lfCharSet;
+            set
+            {
+                lfCharSet = (byte)value;
+            }
+        }
+
         /// <summary>
         /// 访问或修改文字样式名称
         /// </summary>

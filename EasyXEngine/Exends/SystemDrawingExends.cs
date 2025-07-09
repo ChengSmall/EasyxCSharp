@@ -380,6 +380,20 @@ namespace Cheng.EasyXEngine.Extends
 
         #endregion
 
+        #region 字体
+
+        //[Obsolete("未完成")]
+        //public static LogFont ToCFont(System.Drawing.Font font)
+        //{
+        //    LogFont cfont = default;
+        //    cfont.lfCharSet = font.GdiCharSet;
+        //    //cfont.lfClipPrecision = font.Unit;
+
+        //    return cfont;
+        //}
+
+        #endregion
+
     }
 
 }

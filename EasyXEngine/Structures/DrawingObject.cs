@@ -17,7 +17,7 @@ namespace Cheng.EasyXEngine.Structures
         /// 绘制层级
         /// </summary>
         /// <returns>该参数表示图像的绘制顺序，值从小到大排序，先绘制较小值，后绘制较大值，后绘制的会覆盖先绘制的图像</returns>
-        int Lay { get; }
+        int Lay { get; set; }
 
         /// <summary>
         /// 在派生类中重写此方法，以实现该对象的图像绘制
