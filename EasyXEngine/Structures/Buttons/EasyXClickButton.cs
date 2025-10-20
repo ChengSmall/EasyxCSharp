@@ -255,13 +255,7 @@ namespace Cheng.EasyXEngine.Structures.Buttons
             set => p_active = value;
         }
 
-        public override ButtonAvailablePermissions AvailablePermissions
-        {
-            get
-            {
-                return ButtonAvailablePermissions.CanButtonClick | base.AvailablePermissions;
-            }
-        }
+        public override bool CanButtonClick => true;
 
         public int Lay
         {

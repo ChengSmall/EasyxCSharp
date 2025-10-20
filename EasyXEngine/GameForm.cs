@@ -291,7 +291,7 @@ namespace Cheng.EasyXEngine
         /// 释放此实例和关联的所有非托管资源
         /// </summary>
         public override void Close()
-        {            
+        {
             Dispose(true);
         }
 
@@ -304,7 +304,7 @@ namespace Cheng.EasyXEngine
         /// <summary>
         /// 获取EasyX游戏主循环实例
         /// </summary>
-        /// <remarks>在此之前请调用<see cref="InitEasyXGame"/>方法初始化游戏</remarks>
+        /// <remarks>在此之前请调用<see cref="GameForm.InitEasyXGame()"/>方法初始化游戏</remarks>
         /// <exception cref="EasyXEngineExcption">未执行初始化方法</exception>
         public static GameForm Game
         {

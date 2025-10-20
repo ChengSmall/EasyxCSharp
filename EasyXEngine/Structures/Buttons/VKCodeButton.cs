@@ -53,18 +53,17 @@ namespace Cheng.EasyXEngine.Structures.Buttons
 
         #region 派生
 
-        public override ButtonAvailablePermissions AvailablePermissions
-        {
-            get
-            {
-                const ButtonAvailablePermissions my =
-                 ButtonAvailablePermissions.CanGetAllStatePower |
-                 ButtonAvailablePermissions.CanGetFrameValue |
-                 ButtonAvailablePermissions.AllFrameGetPermissions;
+        public override bool CanGetState => true;
 
-                return my;
-            }
-        }
+        public override bool CanGetPower => true;
+
+        public override bool CanGetMinPower => true;
+
+        public override bool CanGetMaxPower => true;
+
+        public override bool CanGetChangeFrameButtonDown => true;
+
+        public override bool CanGetChangeFrameButtonUp => true;
 
         /// <summary>
         /// 当前帧按钮是否被按下
