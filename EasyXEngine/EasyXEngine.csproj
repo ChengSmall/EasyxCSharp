@@ -8,17 +8,18 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Cheng.EasyXEngine</RootNamespace>
     <AssemblyName>EasyXEngine</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\temp\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,12 +31,12 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release\temp\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>bin\Release\EasyXEngine.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\temp\EasyXEngine.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -53,9 +54,11 @@
   <ItemGroup>
     <Reference Include="CSharpTemplates">
       <HintPath>..\..\..\..\..\CSharp\CSharpTemplatesGit\order\CSharpTemplates\bin\Release\netstandard2.0\CSharpTemplates.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NetFrameworkTemplate">
       <HintPath>..\..\..\..\..\CSharp\CSharpTemplatesGit\order\NetFrameworkTemplate4.6.2\bin\Release\NetFrameworkTemplate.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -80,6 +83,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>del /q "$(TargetDir)*.config"</PostBuildEvent>
+    <PostBuildEvent>del /q "$(TargetDir)*.config"
+
+copy /y /b "$(TargetPath)" "$(ProjectDir)bin\$(ConfigurationName)"
+copy /y /b "$(TargetDir)$(TargetName).xml" "$(ProjectDir)bin\$(ConfigurationName)"</PostBuildEvent>
   </PropertyGroup>
 </Project>

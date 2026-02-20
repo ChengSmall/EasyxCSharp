@@ -48,7 +48,7 @@ namespace Cheng.EasyX
         public static bool GetMessage(out CsMessage message, MessageType type, bool isRemove)
         {
             Device.f_testNotInitGraph(Device.exc_winNotInit);
-            fixed(CsMessage* cp = &message)
+            fixed (CsMessage* cp = &message)
             {
                 *cp = default;
                 return EasyX_API.peekmessage_(cp, (byte)type, isRemove);

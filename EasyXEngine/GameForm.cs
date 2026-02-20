@@ -160,7 +160,7 @@ namespace Cheng.EasyXEngine
     /// <summary>
     /// 窗体消息参数
     /// </summary>
-    public struct WindowEventArg
+    public readonly struct WindowEventArg
     {
         public WindowEventArg(MessageValue meg, IntPtr l, IntPtr w)
         {
@@ -772,13 +772,12 @@ namespace Cheng.EasyXEngine
             vk = meg.KeyCode;
             bool flag;
 
-
-            IntPtr lp = default;
+            //IntPtr lp = default;
             IntPtr wp = default;
 
             if (mkb)
             {
-                lp = meg.LParam;
+                //lp = meg.LParam;
                 wp = meg.WParam;
             }
 
@@ -934,8 +933,6 @@ namespace Cheng.EasyXEngine
 
             WindowEvent?.Invoke(this, new WindowEventArg(meg.Message, meg.LParam, meg.WParam));
         }
-
-        //TellApart
 
         /// <summary>
         /// 按键消息捕获到 Shift, Ctrl, Alt 这类辅助按键时，是否区分左右
