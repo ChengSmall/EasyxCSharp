@@ -50,8 +50,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Costura32\EasyXcpp32.dll" />
-    <EmbeddedResource Include="Costura64\EasyXcpp64.dll" />
+    <None Include="Costura32\EasyXcpp32.dll" />
+    <None Include="Costura64\EasyXcpp64.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EasyXAPI\cppAPI\EasyX_API.cs" />
@@ -85,7 +85,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>del /q $(TargetDir)$(TargetName)$(TargetExt).config</PostBuildEvent>
   </PropertyGroup>
 </Project>
