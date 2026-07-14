@@ -14,4 +14,4 @@ TestPrograms/
 
 #忽略不必要无效文件
 .pdb
-packages/Fody.6.0.0/Fody.6.0.0.nupkg
+packages/

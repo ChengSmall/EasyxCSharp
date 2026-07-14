@@ -17,6 +17,7 @@ namespace Cheng.EasyX
     /// </summary>
     /// <remarks>
     /// <para>这是管理绘图设备相关api的静态类</para>
+    /// <para>请在使用EasyxCSharp的api前确保程序加载相关dll，可使用<see cref="LoadLibrary(string)"/>加载dll代码</para>
     /// </remarks>
     public unsafe static class Device
     {
@@ -41,6 +42,22 @@ namespace Cheng.EasyX
         #region 封装
 
         #region winapi
+
+        [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "LoadLibraryW", CharSet = CharSet.Unicode)]
+        private static extern void* winapi_LoadLibrary(string lpFileName);
+
+        [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "GetProcAddress")]
+        private static extern void* winapi_GetProcAddress(void* hModule, [MarshalAs(UnmanagedType.LPStr)] string lpProcName);
+
+        [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "FreeLibrary")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool winapi_FreeLibrary(void* hModule);
+
+        [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "GetProcAddress")]
+        private static extern void* winapi_GetProcAddress_ptr(void* hModule, void* lpProcName);
+
+        [DllImport("kernel32.dll", SetLastError = true, EntryPoint = "GetModuleHandleW", CharSet = CharSet.Unicode)]
+        private static extern void winapi_GetModuleHandle(char* dllName);
 
         #endregion
 
@@ -116,6 +133,57 @@ namespace Cheng.EasyX
         #region api
 
         /// <summary>
+        /// 加载非托管dll代码
+        /// </summary>
+        /// <remarks>
+        /// <para>请在使用EasyxCSharp的api前确保程序加载相关dll</para>
+        /// </remarks>
+        /// <param name="lpFileName">指定dll文件路径</param>
+        /// <returns>加载后的dll代码模块基址</returns>
+        /// <exception cref="ArgumentException">参数错误</exception>
+        /// <exception cref="Win32Exception">win32错误</exception>
+        public static IntPtr LoadLibrary(string lpFileName)
+        {
+            if (string.IsNullOrEmpty(lpFileName)) throw new ArgumentException();
+            var ptr = winapi_LoadLibrary(lpFileName);
+            if(ptr == null)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+            return new IntPtr(ptr);
+        }
+
+        /// <summary>
+        /// 释放指定非托管dll代码
+        /// </summary>
+        /// <param name="module">已加载的模块名</param>
+        /// <returns>是否成功释放；若不成功请使用<see cref="Marshal.GetLastWin32Error"/>获取错误码</returns>
+        public static bool FreeLibrary(IntPtr module)
+        {
+            return winapi_FreeLibrary(module.ToPointer());
+        }
+
+        /// <summary>
+        /// 加载非托管dll代码，指定双系统文件
+        /// </summary>
+        /// <param name="dllPathByX86">当系统是32位程序时，会加载该路径下的dll</param>
+        /// <param name="dllPathByX64">当系统是64位程序时，会加载该路径下的dll</param>
+        /// <returns>加载后的dll代码模块基址</returns>
+        /// <exception cref="ArgumentException">参数错误</exception>
+        /// <exception cref="Win32Exception">win32错误</exception>
+        public static IntPtr DynLoadLibrary(string dllPathByX86, string dllPathByX64)
+        {
+            if (EasyX_API.x64)
+            {
+                return LoadLibrary(dllPathByX64);
+            }
+            else
+            {
+                return LoadLibrary(dllPathByX86);
+            }
+        }
+
+        /// <summary>
         /// 获取绘图区的大小
         /// </summary>
         /// <returns>绘图区的大小；x表示长，y表示高</returns>
@@ -130,6 +198,7 @@ namespace Cheng.EasyX
         }
 
         internal const string exc_winNotInit = "窗口未初始化";
+
         /// <summary>
         /// 初始化窗口
         /// </summary>

@@ -18,8 +18,9 @@ namespace Cheng.EasyX.CPP
     {
 
         #region 常量
-        //const string path = @"D:\BianCheng\Project\EasyXcpp\EasyXcpp_dll\EasyXcpp_dll\output\win64\Release\";
+
         public const string dllName = "EasyXcpp64.dll";
+
         #endregion
 
         #region api
